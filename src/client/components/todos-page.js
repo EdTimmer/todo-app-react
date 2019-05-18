@@ -94,8 +94,7 @@ class TodosPage extends React.Component {
    * @param  {Array} todos - Array of todo objects
    */
   updateTodos(todos) {
-    // console.log('todos in updateTodos are: ', todos)
-    this.setState({ todos: JSON.parse(todos) });
+    this.setState({ todos });
   }
 
   /**

@@ -51,6 +51,7 @@ export function getApiPromise(method, data) {
       return response.json().then(err => Promise.reject(err.message));
     }
 
+    // console.log('response is: ', JSON.paarse(response.json()))
     return response.json();
   })
-};
+}

@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 
 app.get('/todos', (req, res) => {
   res.json(JSON.stringify(todos));
+  // res.json(JSON.parse(todos));
 });
 
 app.get('/todos/:id', (req, res) => {

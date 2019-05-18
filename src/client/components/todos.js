@@ -106,7 +106,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     if (!Array.isArray(todos)) {
       return null;
     }
-
+    // console.log('todos in renderTodos is: ', todos)
     return todos.map(todo => {
       let filtered;
       switch (filterBy) {

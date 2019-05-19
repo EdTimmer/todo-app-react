@@ -9,7 +9,6 @@ export function api(method, data, cb) {
   const promise = getApiPromise(method, data);
 
   promise.then(json => {
-    // console.log('json in getApiPromise', json)
     if (typeof cb === 'function') {
 
       if (typeof json === 'string') {
@@ -33,11 +32,9 @@ export function api(method, data, cb) {
  * @returns {promise} - Promise from the fetch request to the backend
  */
 export function getApiPromise(method, data) {
-  // console.log('data in function getApiPromise', data)
+
   let url = 'http://localhost:3000/todos';
   if (['DELETE', 'PUT'].indexOf(method) !== -1) {
-    // console.log(JSON.parse(data))
-    // console.log('data is getApiPromise is: ', typeof data)
     if (typeof data === 'string') {
       let parsedData = JSON.parse(data);
       url += `/${parsedData.id}`;
@@ -56,7 +53,6 @@ export function getApiPromise(method, data) {
   }
 
   if (data) {
-    // console.log('data 1 is: ', typeof data)
     if (typeof data === 'string') {
       // data = JSON.parse(data);
       // options.body = JSON.stringify({
@@ -70,8 +66,6 @@ export function getApiPromise(method, data) {
         data,
       });
     }
-    // options.body = data;
-    // console.log('data 2 is: ', typeof data)
   }
 
   return fetch(url, options)

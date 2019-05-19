@@ -42,13 +42,11 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param  {object} json - Resulting JSON from fetch
    */
   const deleteTodo = json => {
-    // console.log('json in deleteTodo is: ', json);
     
     const index = todos.findIndex(todo => {
       return todo.id === json.todo[0].id;
     });
-    // const index = json.todo[0].id - 1;
-    // console.log('index in deleteTodo: ', index);
+
     updateTodos(
       [
         ...todos.slice(0, index),
@@ -63,11 +61,11 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param  {object} json - Resulting JSON from fetch
    */
   const putTodo = json => {
-    console.log('json in putTodo is: ', json);
+
     const index = todos.findIndex(todo => {
       return todo.id === json.todo.id;
     });
-    console.log('index in putTodo is: ', index);
+
     updateTodos(
       [
         ...todos.slice(0, index),
@@ -84,8 +82,6 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param {object} todo - Todo object
    */
   const onClickDelete = todo => {
-    // console.log('todo in onClickDelete is: ', typeof todo)
-    // api('DELETE', todo, deleteTodo);
     api('DELETE', JSON.stringify(todo), deleteTodo);
   };
 
@@ -97,9 +93,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    */
   const onClickTodo = todo => {
     const newTodo = Object.assign({}, todo);
-    console.log('newTodo is: ', newTodo)
     newTodo.status = todo.status === 'complete' ? 'active' : 'complete';
-    console.log('changed newTodo.status is: ', newTodo.status)
     newTodo.archive = false;
 
     api('PUT', newTodo, putTodo);
@@ -114,7 +108,6 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     if (!Array.isArray(todos)) {
       return null;
     }
-    // console.log('todos in renderTodos is: ', todos)
     return todos.map(todo => {
       let filtered;
       switch (filterBy) {

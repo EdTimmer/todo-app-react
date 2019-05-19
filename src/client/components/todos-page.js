@@ -61,7 +61,6 @@ class TodosPage extends React.Component {
    * @param  {string} text - Todo text
    */
   addTodo(text) {
-    // console.log('text in addTodo: ', text)
     if (!text) {
       return;
     }
@@ -75,8 +74,6 @@ class TodosPage extends React.Component {
    * @param  {object} json - Resulting JSON from fetch
    */
   postTodo(json) {
-    // console.log('postTodo got called');
-    // console.log('json in postTodo is: ', json);
     this.setState({
       todos: [...json],
     });
@@ -97,12 +94,7 @@ class TodosPage extends React.Component {
    * @param  {Array} todos - Array of todo objects
    */
   updateTodos(todos) {
-    // console.log('this.state.todos 1: ', this.state.todos)
-    // const newTodos = todos;
-    // this.setState({ todos: [] })
     this.setState({ todos });
-    // this.setState({ todos: JSON.parse(todos)})
-    // console.log('this.state.todos 2: ', this.state.todos)
   }
 
   /**
@@ -110,7 +102,6 @@ class TodosPage extends React.Component {
    * @returns {ReactElement}
    */
   render() {
-    // console.log('todos are: ', this.state.todos);
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />

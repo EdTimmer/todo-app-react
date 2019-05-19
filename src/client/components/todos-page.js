@@ -41,6 +41,7 @@ class TodosPage extends React.Component {
     this.state = {
       todos: [],
       filterBy: null,
+      // activeNumber: this.state.todos.length
     };
 
     this.addTodo = this.addTodo.bind(this);
@@ -106,7 +107,7 @@ class TodosPage extends React.Component {
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
-        <Summary />
+        <Summary num={this.state.todos.filter(todo => todo.status === 'active').length}/>
         <TodoForm onSubmit={this.addTodo} />
 
         <Todos

@@ -9,7 +9,7 @@ export function api(method, data, cb) {
   const promise = getApiPromise(method, data);
 
   promise.then(json => {
-    console.log('json in getApiPromise', json)
+    // console.log('json in getApiPromise', json)
     if (typeof cb === 'function') {
       // cb(json);
       // console.log('json is: ', typeof json)
@@ -40,11 +40,14 @@ export function getApiPromise(method, data) {
   let url = 'http://localhost:3000/todos';
   if (['DELETE', 'PUT'].indexOf(method) !== -1) {
     // console.log(JSON.parse(data))
-    let parsedData = JSON.parse(data);
-    // console.log(parsedData.id)
-    // url += `/${data.id}`;
-    url += `/${parsedData.id}`;
-    // console.log(url)   
+    // console.log('data is getApiPromise is: ', typeof data)
+    if (typeof data === 'string') {
+      let parsedData = JSON.parse(data);
+      url += `/${parsedData.id}`;
+    }
+    if (typeof data === 'object') {
+      url += `/${data.id}`;
+    }
   }
 
   const options = {
@@ -56,12 +59,13 @@ export function getApiPromise(method, data) {
   }
 
   if (data) {
-    console.log('data 1 is: ', typeof data)
+    // console.log('data 1 is: ', typeof data)
     if (typeof data === 'string') {
-      data = JSON.parse(data)
-      options.body = JSON.stringify({
-        data,
-      });
+      // data = JSON.parse(data);
+      // options.body = JSON.stringify({
+      //   data,
+      // });
+      options.body = data;
     }
     if (typeof data === 'object') {
       // data = JSON.parse(data)
@@ -69,12 +73,10 @@ export function getApiPromise(method, data) {
         data,
       });
     }
-
-
     // options.body = data;
     // console.log('data 2 is: ', typeof data)
   }
-  // console.log('url before fetch is: ', url)
+
   return fetch(url, options)
   .then(response => {
     if (response.status >= 400) {

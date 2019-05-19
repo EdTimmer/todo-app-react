@@ -61,7 +61,7 @@ class TodosPage extends React.Component {
    * @param  {string} text - Todo text
    */
   addTodo(text) {
-    console.log('text in addTodo: ', text)
+    // console.log('text in addTodo: ', text)
     if (!text) {
       return;
     }
@@ -75,8 +75,8 @@ class TodosPage extends React.Component {
    * @param  {object} json - Resulting JSON from fetch
    */
   postTodo(json) {
-    console.log('postTodo got called');
-    console.log('json in postTodo is: ', json);
+    // console.log('postTodo got called');
+    // console.log('json in postTodo is: ', json);
     this.setState({
       todos: [...json],
     });

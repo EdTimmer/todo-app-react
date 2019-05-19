@@ -15,6 +15,8 @@ let todos = [
   { id: 2, text: 'Pick up groceries', status: 'complete' },
 ];
 
+let lastId = 2;
+
 app.get('/', (req, res) => {
   const bundle = `//${req.hostname}:8080/public/bundle.js`;
   res.render('index', { bundle });
@@ -43,7 +45,10 @@ app.post('/todos', (req, res) => {
     return;
   }
 
-  const id = todos.length + 1;
+  
+  // const id = todos.length + 1;
+  const id = lastId + 1;
+  lastId++;
   const newTodo = { id, text, status: 'active' };
 
   todos.push(newTodo);
@@ -62,7 +67,7 @@ app.delete('/todos/:id', (req, res) => {
     let deletedTodo = todos.filter(todo => todo.id === id);
 
     todos = todos.filter(todo => todo.id !== id);
-    
+
     res.json({
       msg: 'Todo deleted',
       todo: deletedTodo

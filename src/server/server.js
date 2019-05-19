@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const todos = [
+let todos = [
   { id: 1, text: 'Hello, world!' },
   { id: 2, text: 'Pick up groceries', status: 'complete' },
 ];
@@ -53,21 +53,25 @@ app.post('/todos', (req, res) => {
 
 app.delete('/todos/:id', (req, res) => {
   // res.status(500).send({ message: 'not implemented' });
+  const id = parseInt(req.params.id);
 
-  const found = todos.some(todo => todo.id === parseInt(req.params.id));
+  const found = todos.some(todo => todo.id === id);
   
   if (found) {
-    // todos = todos.filter(todo => todo.id !== parseInt(req.params.id))
-    // console.log('todos in app.delete: ', todos)
+
+    let deletedTodo = todos.filter(todo => todo.id === id);
+
+    todos = todos.filter(todo => todo.id !== id);
+    
     res.json({
       msg: 'Todo deleted',
-      // todos: todos.filter(todo => todo.id !== parseInt(req.params.id))
-      todo: todos.filter(todo => todo.id === parseInt(req.params.id))
-
+      todo: deletedTodo
     });
+
   } else {
-    res.status(400).json({ msg: `No todo with the id of ${req.params.id}` });
+    res.status(400).json({ msg: `No todo with the id of ${id}` });
   }
+
 });
 
 app.put('/todos/:id', (req, res) => {

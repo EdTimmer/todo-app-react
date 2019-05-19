@@ -33,7 +33,7 @@ const TodoLink = ({ text, onClick }) => {
 
   return (
     <div className={baseCls} onClick={onClick}>
-      {text}
+      <input type="checkbox" /> {text}
     </div>
   );
 };

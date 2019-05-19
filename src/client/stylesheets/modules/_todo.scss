@@ -1,6 +1,11 @@
 // Todo module.
 .todo {
   cursor: pointer;
+  height: 4rem;
+  margin-left: 4rem;
+  margin-right: 8rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid grey;
 
   &--status-complete {
     text-decoration: line-through;

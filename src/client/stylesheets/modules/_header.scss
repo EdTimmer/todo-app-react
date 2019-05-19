@@ -1,4 +1,18 @@
 // Header module
 .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  text-align: left;
   background-color: map-get($colors, primary);
+  height: 5rem;
+  font-size: 2rem;
+}
+
+.header-link {
+  text-decoration: none;
+  color: white;
+  margin-left: 4rem;
+  margin-top: auto;
+  margin-bottom: auto;
 }

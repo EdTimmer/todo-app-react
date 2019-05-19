@@ -55,10 +55,12 @@ class TodoForm extends React.Component {
    */
   onSubmit(e) {
     e.preventDefault();
-
+    // console.log('onSubmit got called');
+    // console.log('props in onSubmit: ', this.props);
     this.props.onSubmit(this.state.input);
 
     this.setState({ input: '' });
+    
   }
 
   /**
@@ -66,6 +68,7 @@ class TodoForm extends React.Component {
    * @returns {ReactElement}
    */
   render() {
+    // console.log('state in TodoForm: ', this.state)
     return (
       <form onSubmit={this.onSubmit}>
         <input

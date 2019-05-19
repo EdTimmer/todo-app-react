@@ -42,13 +42,13 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param  {object} json - Resulting JSON from fetch
    */
   const deleteTodo = json => {
-    console.log('json in deleteTodo is: ', json);
+    // console.log('json in deleteTodo is: ', json);
     
     const index = todos.findIndex(todo => {
       return todo.id === json.todo[0].id;
     });
     // const index = json.todo[0].id - 1;
-    console.log('index in deleteTodo: ', index);
+    // console.log('index in deleteTodo: ', index);
     updateTodos(
       [
         ...todos.slice(0, index),
@@ -96,6 +96,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    */
   const onClickTodo = todo => {
     const newTodo = Object.assign({}, todo);
+    console.log('newTodo is: ', newTodo)
     newTodo.status = todo.status === 'complete' ? 'active' : 'complete';
     newTodo.archive = false;
 

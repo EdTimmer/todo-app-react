@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 let todos = [
-  { id: 1, text: 'Hello, world!' },
+  { id: 1, text: 'Hello, world!', status: 'active' },
   { id: 2, text: 'Pick up groceries', status: 'complete' },
 ];
 
@@ -45,8 +45,7 @@ app.post('/todos', (req, res) => {
     return;
   }
 
-  
-  // const id = todos.length + 1;
+// const id = todos.length + 1;
   const id = lastId + 1;
   lastId++;
   const newTodo = { id, text, status: 'active' };
@@ -80,7 +79,23 @@ app.delete('/todos/:id', (req, res) => {
 });
 
 app.put('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  // res.status(500).send({ message: 'not implemented' });
+  const id = parseInt(req.params.id);
+  const found = todos.some(todo => todo.id === id);
+
+  if (found) {
+    // const updTodo = req.body;
+    // const id = parseInt(req.params.id);
+    todos.forEach(todo => {
+      if (todo.id === id) {
+        // todo.text = updTodo.text ? updTodo.text : todo.text;
+        todo.status = todo.status === 'complete' ? 'active' : 'complete';
+        res.json({ msg: 'Todo updated', todo });
+      }
+    });
+  } else {
+    res.status(400).json({ msg: `No todo with the id of ${id}` });
+  }
 });
 
 // Node server.

@@ -11,10 +11,7 @@ export function api(method, data, cb) {
   promise.then(json => {
     // console.log('json in getApiPromise', json)
     if (typeof cb === 'function') {
-      // cb(json);
-      // console.log('json is: ', typeof json)
-      // console.log('json is: ', json);
-      // console.log('json typeof is: ', typeof json);
+
       if (typeof json === 'string') {
         cb(JSON.parse(json));
       }

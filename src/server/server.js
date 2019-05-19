@@ -12,18 +12,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const todos = [
   { id: 1, text: 'Hello, world!' },
-  { id: 2, text: 'Pick up groceries', status: 'complete' }
+  { id: 2, text: 'Pick up groceries', status: 'complete' },
 ];
 
 app.get('/', (req, res) => {
   const bundle = `//${req.hostname}:8080/public/bundle.js`;
-
   res.render('index', { bundle });
 });
 
 app.get('/todos', (req, res) => {
   res.json(JSON.stringify(todos));
-  // res.json(JSON.parse(todos));
+  // res.json(todos);
 });
 
 app.get('/todos/:id', (req, res) => {
@@ -31,7 +30,7 @@ app.get('/todos/:id', (req, res) => {
   const index = todos.findIndex((todo) => {
     return todo.id === id;
   });
-
+  
   res.json(JSON.stringify(todos[index]));
 });
 
@@ -53,7 +52,22 @@ app.post('/todos', (req, res) => {
 });
 
 app.delete('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  // res.status(500).send({ message: 'not implemented' });
+
+  const found = todos.some(todo => todo.id === parseInt(req.params.id));
+  
+  if (found) {
+    // todos = todos.filter(todo => todo.id !== parseInt(req.params.id))
+    // console.log('todos in app.delete: ', todos)
+    res.json({
+      msg: 'Todo deleted',
+      // todos: todos.filter(todo => todo.id !== parseInt(req.params.id))
+      todo: todos.filter(todo => todo.id === parseInt(req.params.id))
+
+    });
+  } else {
+    res.status(400).json({ msg: `No todo with the id of ${req.params.id}` });
+  }
 });
 
 app.put('/todos/:id', (req, res) => {

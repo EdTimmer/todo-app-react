@@ -25,7 +25,7 @@ const defaultProps = {
  * Link component
  * @returns {ReactElement}
  */
-const TodoLink = ({ text, onClick }) => {
+const TodoLink = ({ text, onClick, status }) => {
   /**
    * Base CSS class
    */
@@ -33,7 +33,11 @@ const TodoLink = ({ text, onClick }) => {
 
   return (
     <div className={baseCls} onClick={onClick}>
-      <input type="checkbox" /> {text}
+        <input
+          type="checkbox"
+          checked={status === 'active' ? '' : 'checked'}
+        />
+        <label style={{marginLeft: '1rem'}}>{text}</label>   
     </div>
   );
 };

@@ -31,6 +31,7 @@ const defaultProps = {
  * @returns {ReactElement}
  */
 const Todos = ({ filterBy, todos, updateTodos }) => {
+
   /**
    * Base CSS class
    */

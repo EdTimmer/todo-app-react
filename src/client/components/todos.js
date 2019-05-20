@@ -136,14 +136,22 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     if (!Array.isArray(todos)) {
       return null;
     }
+    console.log('todos are: ', todos);
     return todos.map(todo => {
+      
       let filtered;
       switch (filterBy) {
         case 'active':
           filtered = todo.status === 'complete';
+          // console.log('filtered for active: ', filtered);
           break;
         case 'completed':
-          filtered = todo.status !== 'complete';
+          filtered = !todo.archive && todo.status === 'complete' ? false : true;
+          console.log('filtered for completed: ', filtered);
+          break;
+        case 'archived':
+          filtered = !todo.archive;
+          // console.log('filtered for archived: ', filtered);
           break;
         default:
           filtered = false;

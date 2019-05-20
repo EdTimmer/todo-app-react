@@ -48,7 +48,7 @@ app.post('/todos', (req, res) => {
 // const id = todos.length + 1;
   const id = lastId + 1;
   lastId++;
-  const newTodo = { id, text, status: 'active' };
+  const newTodo = { id, text, status: 'active', archive: false };
 
   todos.push(newTodo);
 

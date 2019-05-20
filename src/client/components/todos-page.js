@@ -41,7 +41,6 @@ class TodosPage extends React.Component {
     this.state = {
       todos: [],
       filterBy: null,
-      // activeNumber: this.state.todos.length
     };
 
     this.addTodo = this.addTodo.bind(this);

@@ -96,6 +96,8 @@ export function getApiPromise(method, data) {
   // }
   // console.log('GOT TO BEFORE FETCH');
 
+  console.log('options: ', options);
+
   return fetch(url, options)
   // .then(response => console.log('response is: ', response))
   .then(response => {

@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 let todos = [
-  { id: 1, text: 'Hello, world!', status: 'active' },
-  { id: 2, text: 'Pick up groceries', status: 'complete' },
+  { id: 1, text: 'Hello, world!', status: 'active', archive: false },
+  { id: 2, text: 'Pick up groceries', status: 'complete', archive: false },
 ];
 
 let lastId = 2;
@@ -95,16 +95,33 @@ app.put('/todos/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const found = todos.some(todo => todo.id === id);
 
+  const body = req.body;
+  const archived = body.data.archive;
+  const completed = body.data.status === 'complete';
+
+
+
   if (found) {
-    // const updTodo = req.body;
-    // const id = parseInt(req.params.id);
-    todos.forEach(todo => {
-      if (todo.id === id) {
-        // todo.text = updTodo.text ? updTodo.text : todo.text;
-        todo.status = todo.status === 'complete' ? 'active' : 'complete';
-        res.json({ msg: 'Todo updated', todo });
-      }
-    });
+
+    if (archived && completed) {
+      todos.forEach(todo => {
+        if (todo.id === id) {
+          // todo.text = updTodo.text ? updTodo.text : todo.text;
+          todo.archive = true;
+          res.json({ msg: 'Todo archived', todo });
+        }
+      });
+    }
+    else if (!archived) {
+      todos.forEach(todo => {
+        if (todo.id === id) {
+          // todo.text = updTodo.text ? updTodo.text : todo.text;
+          todo.status = todo.status === 'complete' ? 'active' : 'complete';
+          res.json({ msg: 'Todo updated', todo });
+        }
+      });
+    }
+    
   } else {
     res.status(400).json({ msg: `No todo with the id of ${id}` });
   }

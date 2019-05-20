@@ -26,6 +26,7 @@ const propTypes = {
 const defaultProps = {
   filtered: false,
   onClickDelete: noop,
+  onClickArchive: noop,
   onClickTodo: noop,
   status: '',
   text: '',
@@ -36,7 +37,7 @@ const defaultProps = {
  * Todo component
  * @returns {ReactElement}
  */
-const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
+const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, text }) => {
   /**
    * Base CSS class
    */
@@ -51,6 +52,7 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
       <TodoLink text={text} onClick={onClickTodo} status={status} />
 
       <Button text="Delete" onClick={onClickDelete} />
+      <Button text="Archive" onClick={onClickArchive} />
     </li>
   );
 }

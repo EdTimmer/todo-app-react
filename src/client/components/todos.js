@@ -56,6 +56,22 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     );
   }
 
+  const archiveTodo = json => {
+    
+    const index = todos.findIndex(todo => {
+      console.log('json in archiveTodo: ', json)
+      return todo.id === json.todo[0].id;
+    });
+
+    updateTodos(
+      [
+        ...todos.slice(0, index),
+        json.todo,
+        ...todos.slice(index + 1),
+      ]
+    );
+  }
+
   /**
    * Callback function to replace todo with results of fetching the todo PUT endpoint
    *
@@ -84,6 +100,17 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    */
   const onClickDelete = todo => {
     api('DELETE', JSON.stringify(todo), deleteTodo);
+  };
+
+  const onClickArchive = todo => {
+    // api('PUT', JSON.stringify(todo), archiveTodo);
+    if (todo.status === 'complete') {
+      const newTodo = Object.assign({}, todo);
+      newTodo.archive = true;
+      console.log('newTodo in onClickArchive: ', newTodo);
+      api('PUT', newTodo, putTodo);
+    }
+    
   };
 
   /**
@@ -127,6 +154,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
           key={todo.id}
           filtered={filtered}
           onClickDelete={onClickDelete.bind(this, todo)}
+          onClickArchive={onClickArchive.bind(this, todo)}
           onClickTodo={onClickTodo.bind(this, todo)}
           status={todo.status}
           text={todo.text}

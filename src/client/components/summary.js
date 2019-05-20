@@ -4,18 +4,17 @@ import { Link } from 'react-router-dom';
 /**
  * Header component
  */
-const Summary = (num) => {
+const Summary = ({num, completeAll}) => {
   /**
    * Base CSS class
    * @returns {ReactElement}
    */
   const baseCls = 'summary';
-console.log('num is: ', num)
+
   return (
     <div className={baseCls}>
-      <span>{num.num} task{num.num === 1 ? '' : 's'} remaining</span>
-      
-      {/*<Link className="header-link" to="/">MyTodos</Link>*/}
+      <span>{num} task{num === 1 ? '' : 's'} remaining</span>
+      <span style={{marginLeft: '2rem', color: 'blue'}} onClick={completeAll}>Complete all</span>
     </div>
   )
 };

@@ -78,6 +78,28 @@ app.delete('/todos/:id', (req, res) => {
 
 });
 
+app.put('/todos', (req, res) => {
+
+  todos.forEach(todo => todo.status = 'complete')
+  // res.status(500).send({ message: 'not implemented' });
+  // const id = parseInt(req.params.id);
+  // const found = todos.some(todo => todo.id === id);
+
+  // if (found) {
+  //   // const updTodo = req.body;
+  //   // const id = parseInt(req.params.id);
+  //   todos.forEach(todo => {
+  //     if (todo.id === id) {
+  //       // todo.text = updTodo.text ? updTodo.text : todo.text;
+  //       todo.status = todo.status === 'complete' ? 'active' : 'complete';
+  //       res.json({ msg: 'Todo updated', todo });
+  //     }
+  //   });
+  // } else {
+    res.status(400).json({ msg: `All todos completed` });
+  // }
+});
+
 app.put('/todos/:id', (req, res) => {
   // res.status(500).send({ message: 'not implemented' });
   const id = parseInt(req.params.id);

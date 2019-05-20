@@ -102,6 +102,12 @@ class TodosPage extends React.Component {
 
   completeAll() {
     api('PUT', null, this.updateTodos);
+    let newTodos = this.state.todos;
+    newTodos.forEach(todo => {
+      todo.status = 'complete';
+    })
+    this.setState({ todos: newTodos })
+    
   }
   /**
    * Render

@@ -81,23 +81,13 @@ app.delete('/todos/:id', (req, res) => {
 app.put('/todos', (req, res) => {
 
   todos.forEach(todo => todo.status = 'complete')
-  // res.status(500).send({ message: 'not implemented' });
-  // const id = parseInt(req.params.id);
-  // const found = todos.some(todo => todo.id === id);
-
-  // if (found) {
-  //   // const updTodo = req.body;
-  //   // const id = parseInt(req.params.id);
-  //   todos.forEach(todo => {
-  //     if (todo.id === id) {
-  //       // todo.text = updTodo.text ? updTodo.text : todo.text;
-  //       todo.status = todo.status === 'complete' ? 'active' : 'complete';
-  //       res.json({ msg: 'Todo updated', todo });
-  //     }
-  //   });
-  // } else {
-    res.status(400).json({ msg: `All todos completed` });
-  // }
+  // res.json(JSON.stringify(todos));
+  // res.end();
+  // res.json(todos);
+  // res.status(201).json(todos);
+  // res.status(201);
+  // res.send('ok');
+  // res.json({ msg: 'All todos completed', todos });
 });
 
 app.put('/todos/:id', (req, res) => {
@@ -119,6 +109,8 @@ app.put('/todos/:id', (req, res) => {
     res.status(400).json({ msg: `No todo with the id of ${id}` });
   }
 });
+
+
 
 // Node server.
 const port = 3000;

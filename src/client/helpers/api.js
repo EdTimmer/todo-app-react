@@ -8,9 +8,11 @@
 export function api(method, data, cb) {
   const promise = getApiPromise(method, data);
 
+  // console.log('after promise');
+
   promise.then(json => {
-    console.log('promise got called')
-    console.log('json in promise is: ', json)
+    console.log('promise got called');
+    console.log('json in promise is: ', json);
     if (typeof cb === 'function') {
 
       if (typeof json === 'string') {
@@ -39,7 +41,8 @@ export function api(method, data, cb) {
 export function getApiPromise(method, data) {
 
   let url = 'http://localhost:3000/todos';
-  if (['DELETE', 'PUT'].indexOf(method) !== -1 && data !== null) {
+  // console.log('I RUN RUN');
+  if (['DELETE', 'PUT'].indexOf(method) !== -1 && data) {
     if (typeof data === 'string') {
       let parsedData = JSON.parse(data);
       url += `/${parsedData.id}`;
@@ -48,9 +51,14 @@ export function getApiPromise(method, data) {
       url += `/${data.id}`;
     }
   }
+  // else if (method === 'PUT') {
+  //   url = 'http://localhost:3000/all'
+  // }
+
+  
 
   // if(method === 'PUT' && data === null) {
-  //   url =`http://localhost:3000/todos`;
+  //   // console.log('got called')
   // }
 
   const options = {
@@ -86,11 +94,13 @@ export function getApiPromise(method, data) {
   // if (!data) {
   //   options.body = null;
   // }
+  // console.log('GOT TO BEFORE FETCH');
 
   return fetch(url, options)
+  // .then(response => console.log('response is: ', response))
   .then(response => {
     if (response.status >= 400) {
-      return response.json().then(err => Promise.reject(err.message));  //.catch ?
+      return response.json().then(err => Promise.reject(err.message)); 
     }
 
     return response.json();

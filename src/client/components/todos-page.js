@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { BrowserRouter, Route, Switch, HashRouter  } from 'react-router-dom';
 
 import { api, getApiPromise } from '../helpers/api';
 import Button from './button';
@@ -113,19 +114,35 @@ class TodosPage extends React.Component {
    * @returns {ReactElement}
    */
   render() {
-    
+    console.log('this.state.filterBy', this.state.filterBy)
     return (
+     
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
         <Summary num={this.state.todos.filter(todo => todo.status === 'active').length} completeAll={this.completeAll} />
         <TodoForm onSubmit={this.addTodo} />
 
         <Todos
-          filterBy={this.state.filterBy}
+          // filterBy={this.state.filterBy}
+          filterBy={this.props.filterBy}
           todos={this.state.todos}
           updateTodos={this.updateTodos}
         />
+        
+          {/*<Switch>
+            <Route
+              exact
+              path="/"
+              render={({history}) => <Todos history={history} filterBy={this.state.filterBy} todos={this.state.todos} updateTodos={this.updateTodos} /> } />
+
+            <Route
+              exact
+              path="/active"
+              render={({history}) => <Todos history={history} filterBy="active" todos={this.state.todos} updateTodos={this.updateTodos} /> } />
+          </Switch>*/}
+        
       </div>
+    
     );
   }
 }

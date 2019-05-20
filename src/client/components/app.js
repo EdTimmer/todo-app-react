@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, HashRouter  } from 'react-router-dom';
 
 import TodosPage from './todos-page';
 import Header from './header';
+// import All from './All';
+// import Active from './Active';
+// import Completed from './Completed';
+// import Archived from './Archived';
 
 /**
  * Prop Types
@@ -27,15 +31,17 @@ const App = ({ children }) => {
   const baseCls = 'app';
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className={baseCls}>
         <Header />
-
-        <Route path="/">
-          <TodosPage />
-        </Route>
+        <Switch>
+          <Route exact path="/" component={TodosPage} />
+          <Route exact path="/active" render={() => <TodosPage filterBy="active" />} />
+          <Route exact path="/completed" render={() => <TodosPage filterBy="completed" />} />
+          <Route exact path="/archived" render={() => <TodosPage filterBy="archived" />} />
+        </Switch>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

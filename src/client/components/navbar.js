@@ -32,6 +32,9 @@ const Navbar = ({ filterBy, onClickFilter }) => {
    */
   const baseCls = 'navbar';
 
+  let allLinkCls = `${baseCls}__item`;
+  // allLinkCls += filterBy === false ? ` ${baseCls}__item--active` : '';
+
   let activeLinkCls = `${baseCls}__item`;
   activeLinkCls += filterBy === 'active' ? ` ${baseCls}__item--active` : '';
 
@@ -45,13 +48,41 @@ const Navbar = ({ filterBy, onClickFilter }) => {
     <div className={baseCls}>
       <NavLink
         to="/"
-        activeClassName={`${baseCls}__item--active`}
-        className={`${baseCls}__item`}
-        onClick={() => onClickFilter('')}
+        // activeClassName={`${baseCls}__item--active`}
+        // className={`${baseCls}__item`}
+        className={allLinkCls}
+        // onClick={() => onClickFilter('')}
+        activeStyle={{ fontWeight: 'bold' }}
       >
         All
       </NavLink>
-      <span
+
+      <NavLink
+        to="/active"
+        className={activeLinkCls}
+        activeStyle={{ fontWeight: 'bold' }}
+      >
+        Active
+      </NavLink>  
+
+      <NavLink
+        to="/completed"
+        className={completedLinkCls}
+        activeStyle={{ fontWeight: 'bold' }}
+      >
+        Completed
+      </NavLink> 
+
+      <NavLink
+        to="/archived"
+        className={archivedLinkCls}
+        activeStyle={{ fontWeight: 'bold' }}
+      >
+        Archived
+      </NavLink> 
+
+
+      {/*<span
         className={activeLinkCls}
         onClick={() => onClickFilter('active')}
       >
@@ -68,7 +99,7 @@ const Navbar = ({ filterBy, onClickFilter }) => {
         onClick={() => onClickFilter('archived')}
       >
         Archived
-      </span>
+      </span>*/}
     </div>
   );
 }

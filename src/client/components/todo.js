@@ -61,9 +61,9 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
       
       {
         archive ? <span className="archived-status">archived</span> : <Button text="Archive" onClick={onClickArchive} />
-      } 
-      <Button text="Delete" onClick={onClickDelete} />
-    </div>    
+      }
+      <span style={{marginLeft: '5rem'}} onClick={onClickDelete}>&#10060;</span>
+    </div>
   );
 }
 

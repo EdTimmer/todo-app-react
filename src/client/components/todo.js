@@ -57,10 +57,13 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
     <div className={todoContainerCls}>
       <div className={todoCls}>
         <TodoLink text={text} onClick={onClickTodo} status={status} />
-      </div>     
+      </div>
+      {
+        status === 'complete' && !archive ? <Button text="Archive" onClick={onClickArchive} /> : null
+      }
       
       {
-        archive ? <span className="archived-status">archived</span> : <Button text="Archive" onClick={onClickArchive} />
+        archive ? <span className="archived-status">archived</span> : null
       }
       <span style={{marginLeft: '5rem'}} onClick={onClickDelete}>&#10060;</span>
     </div>

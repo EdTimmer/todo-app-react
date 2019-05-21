@@ -20,11 +20,20 @@
   padding-left: 4rem;
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+}
+
+.navbar-links {
   text-align: left;
 }
 
-// .navbar-links {
-//   margin-top: auto;
-//   margin-bottom: auto;
-// }
+.navbar-button {
+  margin-right: 4rem;
+}
+
+.navbar-button button {
+  width: 15rem;
+}
+

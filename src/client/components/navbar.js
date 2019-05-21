@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Button from './button';
 
 const noop = () => {};
 
@@ -26,7 +27,7 @@ const defaultProps = {
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({ filterBy, onClickFilter }) => {
+const Navbar = ({ filterBy, onClickFilter, archiveAllCompleted }) => {
   /**
    * Base CSS class
    */
@@ -46,45 +47,49 @@ const Navbar = ({ filterBy, onClickFilter }) => {
 
   return (
     <div className={baseCls}>
-      <NavLink
-        to="/all"
-        className={allLinkCls}
-        activeStyle={{ fontWeight: 'bold' }}
+      <div className="navbar-links">
+        <NavLink
+          to="/all"
+          className={allLinkCls}
+          activeStyle={{ fontWeight: 'bold' }}
 
-        // activeClassName={`${baseCls}__item--active`}
-        // className={`${baseCls}__item`}
-        
-        // style={{textDecoration: "none", marginRight: "3rem"}}
-        // onClick={() => onClickFilter('')}
+          // activeClassName={`${baseCls}__item--active`}
+          // className={`${baseCls}__item`}
+          
+          // style={{textDecoration: "none", marginRight: "3rem"}}
+          // onClick={() => onClickFilter('')}
 
-      >
-        All
-      </NavLink>
+        >
+          All
+        </NavLink>
 
-      <NavLink
-        to="/active"
-        className={activeLinkCls}
-        activeStyle={{ fontWeight: 'bold' }}
-      >
-        Active
-      </NavLink>  
+        <NavLink
+          to="/active"
+          className={activeLinkCls}
+          activeStyle={{ fontWeight: 'bold' }}
+        >
+          Active
+        </NavLink>  
 
-      <NavLink
-        to="/completed"
-        className={completedLinkCls}
-        activeStyle={{ fontWeight: 'bold' }}
-      >
-        Completed
-      </NavLink> 
+        <NavLink
+          to="/completed"
+          className={completedLinkCls}
+          activeStyle={{ fontWeight: 'bold' }}
+        >
+          Completed
+        </NavLink> 
 
-      <NavLink
-        to="/archived"
-        className={archivedLinkCls}
-        activeStyle={{ fontWeight: 'bold' }}
-      >
-        Archived
-      </NavLink> 
-
+        <NavLink
+          to="/archived"
+          className={archivedLinkCls}
+          activeStyle={{ fontWeight: 'bold' }}
+        >
+          Archived
+        </NavLink> 
+      </div>
+      <div className="navbar-button">
+        <button type="submit" onClick={archiveAllCompleted}>Archive all completed</button>
+      </div>
 
       {/*<span
         className={activeLinkCls}

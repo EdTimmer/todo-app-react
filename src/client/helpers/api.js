@@ -5,8 +5,8 @@
 * @param  {object} data - Todo object
 * @param  {function} cb - Callback function for returned data
 */
-export function api(method, data, cb) {
-  const promise = getApiPromise(method, data);
+export function api(method, data, cb, customUrl) {
+  const promise = getApiPromise(method, data, customUrl);
 
   // console.log('after promise');
 
@@ -38,10 +38,13 @@ export function api(method, data, cb) {
  *
  * @returns {promise} - Promise from the fetch request to the backend
  */
-export function getApiPromise(method, data) {
-
+export function getApiPromise(method, data, customUrl) {
+  
   let url = 'http://localhost:3000/todos';
-  // console.log('I RUN RUN');
+  if (customUrl) {
+    url = customUrl
+  }
+
   if (['DELETE', 'PUT'].indexOf(method) !== -1 && data) {
     if (typeof data === 'string') {
       let parsedData = JSON.parse(data);

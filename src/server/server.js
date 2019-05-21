@@ -78,6 +78,16 @@ app.delete('/todos/:id', (req, res) => {
 
 });
 
+app.put('/todos/archiveall', (req, res) => {
+
+  todos.forEach(todo => {
+    if (todo.status === 'complete') {
+      todo.archive = true;
+    }
+  });
+  res.end();
+});
+
 app.put('/todos', (req, res) => {
 
   todos.forEach(todo => todo.status = 'complete')
@@ -97,7 +107,7 @@ app.put('/todos/:id', (req, res) => {
 
   const body = req.body;
   const archived = body.data.archive;
-  const completed = body.data.status === 'complete';
+  // const completed = body.data.status === 'complete';
 
   if (found) {
 
@@ -105,7 +115,6 @@ app.put('/todos/:id', (req, res) => {
       todos.forEach(todo => {
         if (todo.id === id) {
           todo.archive = true;
-          // todo.status = 'active';
           res.json({ msg: 'Todo archived', todo });
         }
       });
@@ -123,8 +132,6 @@ app.put('/todos/:id', (req, res) => {
     res.status(400).json({ msg: `No todo with the id of ${id}` });
   }
 });
-
-
 
 // Node server.
 const port = 3000;

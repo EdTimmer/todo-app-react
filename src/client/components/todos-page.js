@@ -49,6 +49,7 @@ class TodosPage extends React.Component {
     this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
     this.completeAll = this.completeAll.bind(this);
+    this.archiveAllCompleted = this.archiveAllCompleted.bind(this);
   }
 
   /**
@@ -106,9 +107,22 @@ class TodosPage extends React.Component {
     newTodos.forEach(todo => {
       todo.status = 'complete';
     })
-    this.setState({ todos: newTodos })
-    
+    this.setState({ todos: newTodos });    
   }
+
+  archiveAllCompleted() {
+    let customUrl = 'http://localhost:3000/todos/archiveall';
+    api('PUT', null, null, customUrl);
+    // customUrl = 'http://localhost:3000/todos/archiveall'
+    let newTodos = this.state.todos;
+    newTodos.forEach(todo => {
+      if (todo.status === 'complete') {
+        todo.archive = true;
+      }
+    })
+    this.setState({ todos: newTodos });
+  }
+
   /**
    * Render
    * @returns {ReactElement}
@@ -118,7 +132,9 @@ class TodosPage extends React.Component {
     return (
      
       <div className={this.baseCls}>
-        <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
+
+        <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} archiveAllCompleted={this.archiveAllCompleted} />
+        
         <Summary num={this.state.todos.filter(todo => todo.status === 'active').length} completeAll={this.completeAll} />
         <TodoForm onSubmit={this.addTodo} />
 

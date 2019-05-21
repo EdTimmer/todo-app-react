@@ -3,6 +3,7 @@
   &__item {
     text-decoration: none;
     margin-right: 3rem;
+    color: map-get($colors, darkgrey);
     // font-weight: 200;
   }
 
@@ -27,6 +28,7 @@
 
 .navbar-links {
   text-align: left;
+  color: map-get($colors, darkgrey);
 }
 
 .navbar-button {

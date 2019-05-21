@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from './button';
 
 const noop = () => {};
 

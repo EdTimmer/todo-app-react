@@ -99,15 +99,13 @@ app.put('/todos/:id', (req, res) => {
   const archived = body.data.archive;
   const completed = body.data.status === 'complete';
 
-
-
   if (found) {
 
-    if (archived && completed) {
+    if (archived) {
       todos.forEach(todo => {
         if (todo.id === id) {
-          // todo.text = updTodo.text ? updTodo.text : todo.text;
           todo.archive = true;
+          // todo.status = 'active';
           res.json({ msg: 'Todo archived', todo });
         }
       });
@@ -115,7 +113,6 @@ app.put('/todos/:id', (req, res) => {
     else if (!archived) {
       todos.forEach(todo => {
         if (todo.id === id) {
-          // todo.text = updTodo.text ? updTodo.text : todo.text;
           todo.status = todo.status === 'complete' ? 'active' : 'complete';
           res.json({ msg: 'Todo updated', todo });
         }

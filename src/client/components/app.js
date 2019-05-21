@@ -36,6 +36,7 @@ const App = ({ children }) => {
         <Header />
         <Switch>
           <Route exact path="/" component={TodosPage} />
+          <Route exact path="/all" render={() => <TodosPage />} />
           <Route exact path="/active" render={() => <TodosPage filterBy="active" />} />
           <Route exact path="/completed" render={() => <TodosPage filterBy="completed" />} />
           <Route exact path="/archived" render={() => <TodosPage filterBy="archived" />} />

@@ -56,21 +56,21 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     );
   }
 
-  const archiveTodo = json => {
+  // const archiveTodo = json => {
     
-    const index = todos.findIndex(todo => {
-      console.log('json in archiveTodo: ', json)
-      return todo.id === json.todo[0].id;
-    });
+  //   const index = todos.findIndex(todo => {
+  //     console.log('json in archiveTodo: ', json)
+  //     return todo.id === json.todo[0].id;
+  //   });
 
-    updateTodos(
-      [
-        ...todos.slice(0, index),
-        json.todo,
-        ...todos.slice(index + 1),
-      ]
-    );
-  }
+  //   updateTodos(
+  //     [
+  //       ...todos.slice(0, index),
+  //       json.todo,
+  //       ...todos.slice(index + 1),
+  //     ]
+  //   );
+  // }
 
   /**
    * Callback function to replace todo with results of fetching the todo PUT endpoint
@@ -103,14 +103,21 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
   };
 
   const onClickArchive = todo => {
+    let currentArchive;
+    let currentStatus;
+    const propsTodo = todos.forEach(propsTodo => {
+      if (propsTodo.id === todo.id) {
+        currentArchive = propsTodo.archive;
+        currentStatus = propsTodo.status;
+      }
+    })
     // api('PUT', JSON.stringify(todo), archiveTodo);
-    if (todo.status === 'complete') {
+    if (currentStatus === 'complete' && !currentArchive) {
       const newTodo = Object.assign({}, todo);
       newTodo.archive = true;
       console.log('newTodo in onClickArchive: ', newTodo);
       api('PUT', newTodo, putTodo);
-    }
-    
+    }    
   };
 
   /**
@@ -120,11 +127,24 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param {object} todo - Todo object
    */
   const onClickTodo = todo => {
-    const newTodo = Object.assign({}, todo);
-    newTodo.status = todo.status === 'complete' ? 'active' : 'complete';
-    newTodo.archive = false;
+    let currentArchive;
+    let currentStatus;
+    const propsTodo = todos.forEach(propsTodo => {
+      if (propsTodo.id === todo.id) {
+        currentArchive = propsTodo.archive;
+        currentStatus = propsTodo.status;
+      }
+    })    
 
-    api('PUT', newTodo, putTodo);
+    if (!currentArchive) {
+      const newTodo = Object.assign({}, todo);
+      console.log('newTodo in onClickTodo: ', newTodo);
+      newTodo.status = todo.status === 'complete' ? 'active' : 'complete';
+      newTodo.archive = false;
+      console.log('newTodo in onClickTodo: ', newTodo)
+  
+      api('PUT', newTodo, putTodo);
+    }
   }
 
   /**

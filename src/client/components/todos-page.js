@@ -123,26 +123,11 @@ class TodosPage extends React.Component {
         <TodoForm onSubmit={this.addTodo} />
 
         <Todos
-          // filterBy={this.state.filterBy}
           filterBy={this.props.filterBy}
           todos={this.state.todos}
           updateTodos={this.updateTodos}
         />
-        
-          {/*<Switch>
-            <Route
-              exact
-              path="/"
-              render={({history}) => <Todos history={history} filterBy={this.state.filterBy} todos={this.state.todos} updateTodos={this.updateTodos} /> } />
-
-            <Route
-              exact
-              path="/active"
-              render={({history}) => <Todos history={history} filterBy="active" todos={this.state.todos} updateTodos={this.updateTodos} /> } />
-          </Switch>*/}
-        
-      </div>
-    
+      </div>    
     );
   }
 }

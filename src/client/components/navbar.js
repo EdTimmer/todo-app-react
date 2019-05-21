@@ -36,23 +36,27 @@ const Navbar = ({ filterBy, onClickFilter }) => {
   // allLinkCls += filterBy === false ? ` ${baseCls}__item--active` : '';
 
   let activeLinkCls = `${baseCls}__item`;
-  activeLinkCls += filterBy === 'active' ? ` ${baseCls}__item--active` : '';
+  // activeLinkCls += filterBy === 'active' ? ` ${baseCls}__item--active` : '';
 
   let completedLinkCls = `${baseCls}__item`;
-  completedLinkCls += filterBy === 'completed' ? ` ${baseCls}__item--active` : '';
+  // completedLinkCls += filterBy === 'completed' ? ` ${baseCls}__item--active` : '';
 
   let archivedLinkCls = `${baseCls}__item`;
-  archivedLinkCls += filterBy === 'archived' ? ` ${baseCls}__item--active` : '';
+  // archivedLinkCls += filterBy === 'archived' ? ` ${baseCls}__item--active` : '';
 
   return (
     <div className={baseCls}>
       <NavLink
-        to="/"
+        to="/all"
+        className={allLinkCls}
+        activeStyle={{ fontWeight: 'bold' }}
+
         // activeClassName={`${baseCls}__item--active`}
         // className={`${baseCls}__item`}
-        className={allLinkCls}
+        
+        // style={{textDecoration: "none", marginRight: "3rem"}}
         // onClick={() => onClickFilter('')}
-        activeStyle={{ fontWeight: 'bold' }}
+
       >
         All
       </NavLink>

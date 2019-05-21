@@ -30,14 +30,14 @@ const defaultProps = {
   onClickTodo: noop,
   status: '',
   text: '',
-  // checked: ''
+  archive: false,
 };
 
 /**
  * Todo component
  * @returns {ReactElement}
  */
-const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, text }) => {
+const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, text, archive }) => {
   /**
    * Base CSS class
    */
@@ -47,13 +47,23 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
     + (status === 'complete' ? ' todo--status-complete' : '')
     + (filtered ? ' todo--filtered' : '');
 
-  return (
-    <li className={todoCls}>
-      <TodoLink text={text} onClick={onClickTodo} status={status} />
+  const containerCls = 'todo-container';
+  const todoContainerCls = containerCls
+    // + (status === 'complete' ? ' todo--status-complete' : '')
+    + (filtered ? ' todo--filtered' : '');
 
+
+  return (
+    <div className={todoContainerCls}>
+      <div className={todoCls}>
+        <TodoLink text={text} onClick={onClickTodo} status={status} />
+      </div>     
+      
+      {
+        archive ? <span className="archived-status">archived</span> : <Button text="Archive" onClick={onClickArchive} />
+      } 
       <Button text="Delete" onClick={onClickDelete} />
-      <Button text="Archive" onClick={onClickArchive} />
-    </li>
+    </div>    
   );
 }
 

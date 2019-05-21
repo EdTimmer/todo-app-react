@@ -56,22 +56,6 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     );
   }
 
-  // const archiveTodo = json => {
-    
-  //   const index = todos.findIndex(todo => {
-  //     console.log('json in archiveTodo: ', json)
-  //     return todo.id === json.todo[0].id;
-  //   });
-
-  //   updateTodos(
-  //     [
-  //       ...todos.slice(0, index),
-  //       json.todo,
-  //       ...todos.slice(index + 1),
-  //     ]
-  //   );
-  // }
-
   /**
    * Callback function to replace todo with results of fetching the todo PUT endpoint
    *
@@ -156,7 +140,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     if (!Array.isArray(todos)) {
       return null;
     }
-    console.log('todos are: ', todos);
+    // console.log('todos are: ', todos);
     return todos.map(todo => {
       
       let filtered;
@@ -186,6 +170,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
           onClickTodo={onClickTodo.bind(this, todo)}
           status={todo.status}
           text={todo.text}
+          archive={todo.archive}
         />
       );
     })

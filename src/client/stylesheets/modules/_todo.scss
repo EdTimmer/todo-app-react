@@ -1,7 +1,12 @@
 // Todo module.
-.todo {
+.todo-container {
+  display: flex;
+  flex-direction: row;
+  // justify-content: center;
+  align-items: center;
+  // text-align: center;
   cursor: pointer;
-  height: 6rem;
+  min-height: 6rem;
   margin-left: 4rem;
   margin-right: 8rem;
   font-size: 1.5rem;
@@ -9,29 +14,55 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
 
+  &--filtered {
+    display: none;
+  }
+}
+
+.todo {
+  width: 15rem;
+  word-wrap: break-word;
+  // display: flex;
+  // flex-direction: row;
+  // // justify-content: center;
+  // align-items: center;
+  // // text-align: center;
+  // cursor: pointer;
+  // height: 6rem;
+  // margin-left: 4rem;
+  // margin-right: 8rem;
+  // font-size: 1.5rem;
+  // border-bottom: 1px solid grey;
+  // padding-top: 1rem;
+  // padding-bottom: 1rem;
+
   &--status-complete {
     text-decoration: line-through;    
     color: grey;
   }
 
-  // &--status-complete label{
-  //   text-decoration: line-through;    
-  // }
-
-  // input:checked{
-  //   text-decoration: line-through;    
-  // }
-  // &--status-complete input:checked ~ .checkmark:after {
-  //   display: block;
-  // }
-  // &--status-complete input {
-  //   "checked"
-  // }
-  // .check {
-    
+  // &--status-complete button {
+  //   text-decoration: none;    
   // }
 
   &--filtered {
     display: none;
   }
+}
+
+// .btn {
+//   background-color: map-get($colors, primary);
+//   margin-left: 3rem;
+//   text-decoration: none;
+//   height: 1.5rem;
+//   width: 8rem;
+//   font-size: 1rem;
+//   color: white;
+// }
+
+.archived-status {
+  margin-left: 3rem;
+  height: 1.5rem;
+  width: 8rem;
+  text-align: center;
 }

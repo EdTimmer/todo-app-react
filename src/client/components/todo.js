@@ -37,7 +37,7 @@ const defaultProps = {
  * Todo component
  * @returns {ReactElement}
  */
-const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, text, archive }) => {
+const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, onClickRevive, status, text, archive }) => {
   /**
    * Base CSS class
    */
@@ -63,8 +63,14 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
       }
       
       {
-        archive ? <span className="archived-status">archived</span> : null
+        archive ? (
+          <span>
+            <span className="archived-status">archived</span>
+            <Button text="Revive" onClick={onClickRevive} />
+          </span>
+          ) : null
       }
+
       <span style={{marginLeft: '5rem', color: 'red'}} onClick={onClickDelete}>&#10060;</span>
     </div>
   );

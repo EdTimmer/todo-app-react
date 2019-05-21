@@ -8,10 +8,7 @@
 export function api(method, data, cb, customUrl) {
   const promise = getApiPromise(method, data, customUrl);
 
-  // console.log('after promise');
-
   promise.then(json => {
-    console.log('promise got called');
     console.log('json in promise is: ', json);
     if (typeof cb === 'function') {
 
@@ -54,15 +51,6 @@ export function getApiPromise(method, data, customUrl) {
       url += `/${data.id}`;
     }
   }
-  // else if (method === 'PUT') {
-  //   url = 'http://localhost:3000/all'
-  // }
-
-  
-
-  // if(method === 'PUT' && data === null) {
-  //   // console.log('got called')
-  // }
 
   const options = {
     method,
@@ -72,37 +60,18 @@ export function getApiPromise(method, data, customUrl) {
     }
   }
 
-  console.log('data is: ', data)
-
   if (data) {
     if (typeof data === 'string') {
-      // data = JSON.parse(data);
-      // options.body = JSON.stringify({
-      //   data,
-      // });
       options.body = data;
     }
     if (typeof data === 'object') {
-      // data = JSON.parse(data)
       options.body = JSON.stringify({
         data,
       });
     }
-    // if (!data) {
-    //   // data = JSON.parse(data)
-    //   options.body = {};
-    // }
   }
 
-  // if (!data) {
-  //   options.body = null;
-  // }
-  // console.log('GOT TO BEFORE FETCH');
-
-  console.log('options: ', options);
-
   return fetch(url, options)
-  // .then(response => console.log('response is: ', response))
   .then(response => {
     if (response.status >= 400) {
       return response.json().then(err => Promise.reject(err.message)); 

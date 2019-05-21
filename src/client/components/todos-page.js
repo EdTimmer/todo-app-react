@@ -128,7 +128,7 @@ class TodosPage extends React.Component {
    * @returns {ReactElement}
    */
   render() {
-    console.log('this.state.filterBy', this.state.filterBy)
+    
     return (
      
       <div className={this.baseCls}>

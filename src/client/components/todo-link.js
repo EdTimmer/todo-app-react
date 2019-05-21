@@ -38,6 +38,14 @@ const TodoLink = ({ text, onClick, status }) => {
           checked={status === 'active' ? '' : 'checked'}
           readOnly
         />
+        {/*<label className="checkbox-container">
+          <input
+            type="checkbox"
+            checked={status === 'active' ? '' : 'checked'}
+            readOnly
+          />
+          <span className="checkmark" />
+      </label>*/}
         <label style={{marginLeft: '1rem'}}>{text}</label>
     </div>
   );

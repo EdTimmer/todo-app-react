@@ -133,6 +133,24 @@ app.put('/todos/:id', (req, res) => {
   }
 });
 
+app.put('/todos/revive/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const found = todos.some(todo => todo.id === id);
+
+  if (found) {
+
+    todos.forEach(todo => {
+      if (todo.id === id) {
+        todo.status = 'active';
+        todo.archive = false;
+        res.json({ msg: 'Todo revived', todo });
+      }
+    });    
+  } else {
+    res.status(400).json({ msg: `No todo with the id of ${id}` });
+  }
+});
+
 // Node server.
 const port = 3000;
 const server = app.listen(port, () => {

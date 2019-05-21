@@ -14,7 +14,7 @@ const Summary = ({num, completeAll}) => {
   return (
     <div className={baseCls}>
       <span>{num} task{num === 1 ? '' : 's'} remaining</span>
-      <span style={{marginLeft: '2rem', color: 'blue'}} onClick={completeAll}>Complete all</span>
+      <span style={{marginLeft: '2rem', color: 'blue', fontWeight: '500', fontSize: '1.5rem'}} onClick={completeAll}>Complete All</span>
     </div>
   )
 };

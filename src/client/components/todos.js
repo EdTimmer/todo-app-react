@@ -99,9 +99,27 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     if (currentStatus === 'complete' && !currentArchive) {
       const newTodo = Object.assign({}, todo);
       newTodo.archive = true;
-      console.log('newTodo in onClickArchive: ', newTodo);
       api('PUT', newTodo, putTodo);
     }    
+  };
+
+  const onClickRevive = todo => {
+    console.log('todo in onClickRevive is: ', todo);
+    // let currentArchive;
+    // let currentStatus;
+    // const propsTodo = todos.forEach(propsTodo => {
+    //   if (propsTodo.id === todo.id) {
+    //     currentArchive = propsTodo.archive;
+    //     currentStatus = propsTodo.status;
+    //   }
+    // })
+    // api('PUT', JSON.stringify(todo), archiveTodo);
+
+    const newTodo = Object.assign({}, todo);
+    newTodo.archive = true;
+    newTodo.status = 'active';
+    let customUrl = 'http://localhost:3000/todos/revive';
+    api('PUT', newTodo, putTodo, customUrl);
   };
 
   /**
@@ -122,10 +140,8 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
 
     if (!currentArchive) {
       const newTodo = Object.assign({}, todo);
-      console.log('newTodo in onClickTodo: ', newTodo);
       newTodo.status = todo.status === 'complete' ? 'active' : 'complete';
       newTodo.archive = false;
-      console.log('newTodo in onClickTodo: ', newTodo)
   
       api('PUT', newTodo, putTodo);
     }
@@ -140,22 +156,19 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     if (!Array.isArray(todos)) {
       return null;
     }
-    // console.log('todos are: ', todos);
+
     return todos.map(todo => {
       
       let filtered;
       switch (filterBy) {
         case 'active':
           filtered = todo.status === 'complete';
-          // console.log('filtered for active: ', filtered);
           break;
         case 'completed':
           filtered = !todo.archive && todo.status === 'complete' ? false : true;
-          console.log('filtered for completed: ', filtered);
           break;
         case 'archived':
           filtered = !todo.archive;
-          // console.log('filtered for archived: ', filtered);
           break;
         default:
           filtered = false;
@@ -168,6 +181,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
           onClickDelete={onClickDelete.bind(this, todo)}
           onClickArchive={onClickArchive.bind(this, todo)}
           onClickTodo={onClickTodo.bind(this, todo)}
+          onClickRevive={onClickRevive.bind(this, todo)}
           status={todo.status}
           text={todo.text}
           archive={todo.archive}

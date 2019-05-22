@@ -26,88 +26,52 @@ const defaultProps = {
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({ filterBy, onClickFilter, archiveAllCompleted }) => {
+const Navbar = ({ archiveAllCompleted }) => {
   /**
    * Base CSS class
    */
   const baseCls = 'navbar';
 
-  let allLinkCls = `${baseCls}__item`;
-  // allLinkCls += filterBy === false ? ` ${baseCls}__item--active` : '';
-
-  let activeLinkCls = `${baseCls}__item`;
-  // activeLinkCls += filterBy === 'active' ? ` ${baseCls}__item--active` : '';
-
-  let completedLinkCls = `${baseCls}__item`;
-  // completedLinkCls += filterBy === 'completed' ? ` ${baseCls}__item--active` : '';
-
-  let archivedLinkCls = `${baseCls}__item`;
-  // archivedLinkCls += filterBy === 'archived' ? ` ${baseCls}__item--active` : '';
+  const linkCls = `${baseCls}__item`;
 
   return (
     <div className={baseCls}>
       <div className="navbar-links">
         <NavLink
           to="/all"
-          className={allLinkCls}
+          className={linkCls}
           activeStyle={{ fontWeight: 'bold' }}
-
-          // activeClassName={`${baseCls}__item--active`}
-          // className={`${baseCls}__item`}
-          
-          // style={{textDecoration: "none", marginRight: "3rem"}}
-          // onClick={() => onClickFilter('')}
-
         >
           All
         </NavLink>
 
         <NavLink
           to="/active"
-          className={activeLinkCls}
+          className={linkCls}
           activeStyle={{ fontWeight: 'bold' }}
         >
           Active
-        </NavLink>  
+        </NavLink>
 
         <NavLink
           to="/completed"
-          className={completedLinkCls}
+          className={linkCls}
           activeStyle={{ fontWeight: 'bold' }}
         >
           Completed
-        </NavLink> 
+        </NavLink>
 
         <NavLink
           to="/archived"
-          className={archivedLinkCls}
+          className={linkCls}
           activeStyle={{ fontWeight: 'bold' }}
         >
           Archived
-        </NavLink> 
+        </NavLink>
       </div>
       <div className="navbar-button">
         <button type="submit" onClick={archiveAllCompleted}>Archive all completed</button>
       </div>
-
-      {/*<span
-        className={activeLinkCls}
-        onClick={() => onClickFilter('active')}
-      >
-        Active
-      </span>
-      <span
-        className={completedLinkCls}
-        onClick={() => onClickFilter('completed')}
-      >
-        Completed
-      </span>
-      <span
-        className={archivedLinkCls}
-        onClick={() => onClickFilter('archived')}
-      >
-        Archived
-      </span>*/}
     </div>
   );
 }

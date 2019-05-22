@@ -32,10 +32,10 @@ const Button = ({ text, onClick }) => {
   const baseCls = 'button';
 
   return (
-    <button className={baseCls} onClick={onClick}>
+    <button type="submit" className={baseCls} onClick={onClick}>
       {text}
     </button>
-  )
+  );
 };
 
 Button.propTypes = propTypes;

@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import Button from './button';
 import TodoLink from './todo-link';
+import ArchiveButton from './archive-button';
+import ArchivedNotice from './archived-notice';
+import ReviveButton from './revive-button';
 
 const noop = () => {};
 
@@ -16,7 +17,6 @@ const propTypes = {
   onClickTodo: PropTypes.func,
   status: PropTypes.string,
   text: PropTypes.string,
-  // checked: ''
 };
 
 /**
@@ -49,43 +49,26 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, onClickRev
 
   const containerCls = 'todo-container';
   const todoContainerCls = containerCls
-    // + (status === 'complete' ? ' todo--status-complete' : '')
     + (filtered ? ' todo--filtered' : '');
-
 
   return (
     <div className={todoContainerCls}>
       <div className={todoCls}>
         <TodoLink text={text} onClick={onClickTodo} status={status} />
       </div>
-        {
-          status === 'complete' && !archive ? <Button text="Archive" onClick={onClickArchive} /> : null
-        }
-        {
-          status === 'complete' && archive ? <span className="archived-status">archived</span> : null
-        }
-
+      
+      <ArchiveButton status={status} archive={archive} onClickArchive={onClickArchive} />
+        
       <div>
-        {
-          archive ? (
-            <Button text="Revive" onClick={onClickRevive} />
-            ) : null
-        }        
+        <ArchivedNotice status={status} archive={archive} />
+        <ReviveButton archive={archive} onClickRevive={onClickRevive} />
         <span style={{marginLeft: '5rem', color: 'red'}} onClick={onClickDelete}>&#10060;</span>
-      </div>      
+      </div>
     </div>
   );
-}
+};
 
 Todo.propTypes = propTypes;
 Todo.defaultProps = defaultProps;
 
 export default Todo;
-
-// {
-//   archive ? (
-//     <span>
-//       <span className="archived-status">archived</span>            
-//     </span>
-//     ) : null
-// }

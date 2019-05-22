@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { api } from '../helpers/api';
 import Todo from './todo';
 
@@ -43,18 +42,16 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param  {object} json - Resulting JSON from fetch
    */
   const deleteTodo = json => {
-    console.log('json in deleteTodo is: ', typeof json);
     const index = todos.findIndex(todo => {
       return todo.id === json.todo[0].id;
     });
-
     updateTodos(
       [
         ...todos.slice(0, index),
         ...todos.slice(index + 1),
       ]
     );
-  }
+  };
 
   /**
    * Callback function to replace todo with results of fetching the todo PUT endpoint
@@ -74,7 +71,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
         ...todos.slice(index + 1),
       ]
     );
-  }
+  };
 
   /**
    * Click handler for clicking on delete button
@@ -83,21 +80,18 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param {object} todo - Todo object
    */
   const onClickDelete = todo => {
-    // api('DELETE', JSON.stringify(todo), deleteTodo);
-    console.log('todo in onClickDelete is: ', typeof todo);
     api('DELETE', todo, deleteTodo);
   };
 
   const onClickArchive = todo => {
     let currentArchive;
     let currentStatus;
-    const propsTodo = todos.forEach(propsTodo => {
+    todos.forEach(propsTodo => {
       if (propsTodo.id === todo.id) {
         currentArchive = propsTodo.archive;
         currentStatus = propsTodo.status;
       }
-    })
-    // api('PUT', JSON.stringify(todo), archiveTodo);
+    });
     if (currentStatus === 'complete' && !currentArchive) {
       const newTodo = Object.assign({}, todo);
       newTodo.archive = true;
@@ -121,13 +115,11 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    */
   const onClickTodo = todo => {
     let currentArchive;
-    let currentStatus;
-    const propsTodo = todos.forEach(propsTodo => {
+    todos.forEach(propsTodo => {
       if (propsTodo.id === todo.id) {
         currentArchive = propsTodo.archive;
-        currentStatus = propsTodo.status;
       }
-    })    
+    });
 
     if (!currentArchive) {
       const newTodo = Object.assign({}, todo);
@@ -178,14 +170,14 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
           archive={todo.archive}
         />
       );
-    })
-  }
+    });
+  };
 
   return (
     <ul className={baseCls}>
       {renderTodos()}
     </ul>
-  )
+  );
 };
 
 Todos.propTypes = propTypes;

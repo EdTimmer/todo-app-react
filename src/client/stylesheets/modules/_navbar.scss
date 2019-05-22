@@ -4,24 +4,21 @@
     text-decoration: none;
     margin-right: 3rem;
     color: map-get($colors, darkgrey);
-    // font-weight: 200;
   }
 
   &__item--active {
     font-weight: 700;
   }
+
   display: flex;
-  flex-direction: column;
-  // justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  // text-align: center;
   background-color: lightgray;
   height: 3rem;
   font-size: 1.5rem;
   padding-left: 4rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+
   text-align: left;
   width: 100%;
 }

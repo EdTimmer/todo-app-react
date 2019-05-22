@@ -100,7 +100,6 @@ app.put('/todos/:id', (req, res) => {
         }
       });
     }
-    
   } else {
     res.status(400).json({ msg: `No todo with the id of ${id}` });
   }

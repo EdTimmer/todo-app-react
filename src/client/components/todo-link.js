@@ -26,32 +26,14 @@ const defaultProps = {
  * @returns {ReactElement}
  */
 const TodoLink = ({ text, onClick, status }) => {
-  /**
-   * Base CSS class
-   */
-  // const baseCls = 'todo-link';
-
   return (
     <div onClick={onClick}>
-        {/*<input
-          type="checkbox"
-          checked={status === 'active' ? '' : 'checked'}
-          readOnly
-        />*/}
-        <span style={{color: 'black'}}>
-          {
-            status === 'active' ? <span>&#9744;</span> :  <span>&#x2611;</span>      
-          }
-        </span>
-        {/*<label className="checkbox-container">
-          <input
-            type="checkbox"
-            checked={status === 'active' ? '' : 'checked'}
-            readOnly
-          />
-          <span className="checkmark" />
-      </label>*/}
-        <label style={{marginLeft: '1rem'}}>{text}</label>
+      <span style={{color: 'black'}}>
+        {
+          status === 'active' ? <span>&#9744;</span> :  <span>&#x2611;</span>
+        }
+      </span>
+      <label style={{marginLeft: '1rem'}}>{text}</label>
     </div>
   );
 };

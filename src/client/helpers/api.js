@@ -11,12 +11,6 @@ export function api(method, data, cb, customUrl) {
   promise.then(json => {
     console.log('json in promise is: ', typeof json);
     if (typeof cb === 'function') {
-      // if (typeof json === 'string') {
-      //   cb(JSON.parse(json));
-      // }
-      // else if (typeof json === 'object') {
-      //   cb(json);
-      // }
       cb(json);
     }
   })
@@ -38,13 +32,6 @@ export function getApiPromise(method, data, customUrl) {
     url = customUrl;
   }
   if (['DELETE', 'PUT'].indexOf(method) !== -1 && data) {
-    // if (typeof data === 'string') {
-    //   let parsedData = JSON.parse(data);
-    //   url += `/${parsedData.id}`;
-    // }
-    // if (typeof data === 'object') {
-    //   url += `/${data.id}`;
-    // }
     url += `/${data.id}`;
   }
 

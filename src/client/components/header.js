@@ -15,7 +15,7 @@ const Header = () => {
     <div className={baseCls}>
       <Link className="header-link" to="/">MyTodos</Link>
     </div>
-  )
+  );
 };
 
 export default Header;

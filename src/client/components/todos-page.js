@@ -1,12 +1,8 @@
-import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import { api, getApiPromise } from '../helpers/api';
-import Button from './button';
+import { api } from '../helpers/api';
 import Navbar from './navbar';
 import TodoForm from './todo-form';
-import TodoLink from './todo-link';
 import Todos from './todos';
 import Summary from './summary';
 
@@ -102,23 +98,11 @@ class TodosPage extends React.Component {
 
   completeAll() {
     api('PUT', null, this.updateTodos);
-    // let newTodos = this.state.todos;
-    // newTodos.forEach(todo => {
-    //   todo.status = 'complete';
-    // })
-    // this.setState({ todos: newTodos });
   }
 
   archiveAllCompleted() {
     let customUrl = 'http://localhost:3000/todos/archiveall';
     api('PUT', null, this.updateTodos, customUrl);
-    // let newTodos = this.state.todos;
-    // newTodos.forEach(todo => {
-    //   if (todo.status === 'complete') {
-    //     todo.archive = true;
-    //   }
-    // })
-    // this.setState({ todos: newTodos });
   }
 
   /**
@@ -126,9 +110,7 @@ class TodosPage extends React.Component {
    * @returns {ReactElement}
    */
   render() {
-    
     return (
-     
       <div className={this.baseCls}>
 
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} archiveAllCompleted={this.archiveAllCompleted} />
@@ -141,7 +123,7 @@ class TodosPage extends React.Component {
           todos={this.state.todos}
           updateTodos={this.updateTodos}
         />
-      </div>    
+      </div>
     );
   }
 }

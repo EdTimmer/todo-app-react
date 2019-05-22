@@ -58,17 +58,13 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, onClickRev
       <div className={todoCls}>
         <TodoLink text={text} onClick={onClickTodo} status={status} />
       </div>
-      {
-        status === 'complete' && !archive ? <Button text="Archive" onClick={onClickArchive} /> : null
-      }
-      
-      {
-        archive ? (
-          <span>
-            <span className="archived-status">archived</span>            
-          </span>
-          ) : null
-      }
+        {
+          status === 'complete' && !archive ? <Button text="Archive" onClick={onClickArchive} /> : null
+        }
+        {
+          status === 'complete' && archive ? <span className="archived-status">archived</span> : null
+        }
+
       <div>
         {
           archive ? (
@@ -85,3 +81,11 @@ Todo.propTypes = propTypes;
 Todo.defaultProps = defaultProps;
 
 export default Todo;
+
+// {
+//   archive ? (
+//     <span>
+//       <span className="archived-status">archived</span>            
+//     </span>
+//     ) : null
+// }

@@ -43,7 +43,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param  {object} json - Resulting JSON from fetch
    */
   const deleteTodo = json => {
-    
+    console.log('json in deleteTodo is: ', typeof json);
     const index = todos.findIndex(todo => {
       return todo.id === json.todo[0].id;
     });
@@ -83,7 +83,8 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param {object} todo - Todo object
    */
   const onClickDelete = todo => {
-    api('DELETE', JSON.stringify(todo), deleteTodo);
+    // api('DELETE', JSON.stringify(todo), deleteTodo);
+    api('DELETE', todo, deleteTodo);
   };
 
   const onClickArchive = todo => {
@@ -104,17 +105,6 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
   };
 
   const onClickRevive = todo => {
-    console.log('todo in onClickRevive is: ', todo);
-    // let currentArchive;
-    // let currentStatus;
-    // const propsTodo = todos.forEach(propsTodo => {
-    //   if (propsTodo.id === todo.id) {
-    //     currentArchive = propsTodo.archive;
-    //     currentStatus = propsTodo.status;
-    //   }
-    // })
-    // api('PUT', JSON.stringify(todo), archiveTodo);
-
     const newTodo = Object.assign({}, todo);
     newTodo.archive = true;
     newTodo.status = 'active';

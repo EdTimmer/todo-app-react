@@ -23,8 +23,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/todos', (req, res) => {
-  res.json(JSON.stringify(todos));
-  // res.json(todos);
+  res.json(todos);
 });
 
 app.get('/todos/:id', (req, res) => {
@@ -32,85 +31,56 @@ app.get('/todos/:id', (req, res) => {
   const index = todos.findIndex((todo) => {
     return todo.id === id;
   });
-  
   res.json(JSON.stringify(todos[index]));
 });
 
 app.post('/todos', (req, res) => {
   const text = req.body.data.text;
-
   if (!text) {
     res.status(400).json({ message: 'text is required' });
-
     return;
   }
-
-// const id = todos.length + 1;
   const id = lastId + 1;
   lastId++;
   const newTodo = { id, text, status: 'active', archive: false };
-
   todos.push(newTodo);
-
   res.status(201).json(todos);
 });
 
 app.delete('/todos/:id', (req, res) => {
-  // res.status(500).send({ message: 'not implemented' });
   const id = parseInt(req.params.id);
-
-  const found = todos.some(todo => todo.id === id);
-  
+  const found = todos.some(todo => todo.id === id);  
   if (found) {
-
     let deletedTodo = todos.filter(todo => todo.id === id);
-
     todos = todos.filter(todo => todo.id !== id);
-
     res.json({
       msg: 'Todo deleted',
       todo: deletedTodo
     });
-
   } else {
     res.status(400).json({ msg: `No todo with the id of ${id}` });
   }
-
 });
 
 app.put('/todos/archiveall', (req, res) => {
-
   todos.forEach(todo => {
     if (todo.status === 'complete') {
       todo.archive = true;
     }
   });
-  // res.end();
   res.status(200);
-  // res.json({ msg: 'All completed todos archived' });
 });
 
 app.put('/todos', (req, res) => {
-
   todos.forEach(todo => todo.status = 'complete')
-  // res.json(JSON.stringify(todos));
-  // res.end();
-  // res.json({ msg: 'All todos completed' });
-  // res.json(todos);
-  // res.status(201).json(todos);
   res.status(200);
-  // res.send('ok');
-  // res.json({ msg: 'All todos completed', todos });
 });
 
 app.put('/todos/:id', (req, res) => {
-  // res.status(500).send({ message: 'not implemented' });
   const id = parseInt(req.params.id);
   const found = todos.some(todo => todo.id === id);
-
   const body = req.body;
   const archived = body.data.archive;
-  // const completed = body.data.status === 'complete';
 
   if (found) {
 
@@ -141,14 +111,13 @@ app.put('/todos/revive/:id', (req, res) => {
   const found = todos.some(todo => todo.id === id);
 
   if (found) {
-
     todos.forEach(todo => {
       if (todo.id === id) {
         todo.status = 'active';
         todo.archive = false;
         res.json({ msg: 'Todo revived', todo });
       }
-    });    
+    });
   } else {
     res.status(400).json({ msg: `No todo with the id of ${id}` });
   }

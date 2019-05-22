@@ -6,21 +6,18 @@
 * @param  {function} cb - Callback function for returned data
 */
 export function api(method, data, cb, customUrl) {
+  console.log('data in api is: ', typeof data);
   const promise = getApiPromise(method, data, customUrl);
-
   promise.then(json => {
-    console.log('json in promise is: ', json);
+    console.log('json in promise is: ', typeof json);
     if (typeof cb === 'function') {
-
-      if (typeof json === 'string') {
-        cb(JSON.parse(json));
-      }
-      // else if (typeof json === 'undefined') {
-      //   cb();
+      // if (typeof json === 'string') {
+      //   cb(JSON.parse(json));
       // }
-      else if (typeof json === 'object') {
-        cb(json);
-      }
+      // else if (typeof json === 'object') {
+      //   cb(json);
+      // }
+      cb(json);
     }
   })
   .catch(err => {
@@ -35,21 +32,20 @@ export function api(method, data, cb, customUrl) {
  *
  * @returns {promise} - Promise from the fetch request to the backend
  */
-export function getApiPromise(method, data, customUrl) {
-  
+export function getApiPromise(method, data, customUrl) {  
   let url = 'http://localhost:3000/todos';
   if (customUrl) {
-    url = customUrl
+    url = customUrl;
   }
-
   if (['DELETE', 'PUT'].indexOf(method) !== -1 && data) {
-    if (typeof data === 'string') {
-      let parsedData = JSON.parse(data);
-      url += `/${parsedData.id}`;
-    }
-    if (typeof data === 'object') {
-      url += `/${data.id}`;
-    }
+    // if (typeof data === 'string') {
+    //   let parsedData = JSON.parse(data);
+    //   url += `/${parsedData.id}`;
+    // }
+    // if (typeof data === 'object') {
+    //   url += `/${data.id}`;
+    // }
+    url += `/${data.id}`;
   }
 
   const options = {
@@ -61,14 +57,19 @@ export function getApiPromise(method, data, customUrl) {
   }
 
   if (data) {
-    if (typeof data === 'string') {
-      options.body = data;
-    }
-    if (typeof data === 'object') {
-      options.body = JSON.stringify({
-        data,
-      });
-    }
+    // if (typeof data === 'string') {
+    //   console.log('data in getApiPromise was a string');
+    //   options.body = data;
+    // }
+    // if (typeof data === 'object') {
+    //   console.log('data in getApiPromise was an object');
+    //   options.body = JSON.stringify({
+    //     data,
+    //   });
+    // }
+    options.body = JSON.stringify({
+      data,
+    });
   }
 
   return fetch(url, options)
@@ -76,7 +77,6 @@ export function getApiPromise(method, data, customUrl) {
     if (response.status >= 400) {
       return response.json().then(err => Promise.reject(err.message)); 
     }
-
     return response.json();
   })
 }

@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { BrowserRouter, Route, Switch, HashRouter  } from 'react-router-dom';
 
 import { api, getApiPromise } from '../helpers/api';
 import Button from './button';

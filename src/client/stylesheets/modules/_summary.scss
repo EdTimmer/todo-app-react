@@ -10,3 +10,10 @@
   font-size: 1.5rem;
   padding-left: 4rem;
 }
+
+.complete-all {
+  margin-left: 2rem;
+  color: map-get($colors, primary); 
+  font-weight: 500;
+  font-size: 1.5rem;
+}

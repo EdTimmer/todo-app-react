@@ -9,7 +9,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: lightgray;
+  background-color: map-get($colors, lightgrey);
   height: 4rem;
   font-size: 1.5rem;
   padding-left: 4rem;

@@ -84,6 +84,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    */
   const onClickDelete = todo => {
     // api('DELETE', JSON.stringify(todo), deleteTodo);
+    console.log('todo in onClickDelete is: ', typeof todo);
     api('DELETE', todo, deleteTodo);
   };
 

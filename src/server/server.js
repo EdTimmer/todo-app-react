@@ -68,12 +68,12 @@ app.put('/todos/archiveall', (req, res) => {
       todo.archive = true;
     }
   });
-  res.status(200);
+  res.status(201).json(todos);
 });
 
 app.put('/todos', (req, res) => {
   todos.forEach(todo => todo.status = 'complete')
-  res.status(200);
+  res.status(201).json(todos);
 });
 
 app.put('/todos/:id', (req, res) => {

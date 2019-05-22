@@ -56,17 +56,8 @@ export function getApiPromise(method, data, customUrl) {
     }
   }
 
+  //converts a JavaScript data object into a string
   if (data) {
-    // if (typeof data === 'string') {
-    //   console.log('data in getApiPromise was a string');
-    //   options.body = data;
-    // }
-    // if (typeof data === 'object') {
-    //   console.log('data in getApiPromise was an object');
-    //   options.body = JSON.stringify({
-    //     data,
-    //   });
-    // }
     options.body = JSON.stringify({
       data,
     });
@@ -75,8 +66,8 @@ export function getApiPromise(method, data, customUrl) {
   return fetch(url, options)
   .then(response => {
     if (response.status >= 400) {
-      return response.json().then(err => Promise.reject(err.message)); 
+      return response.json().then(err => Promise.reject(err.message));
     }
-    return response.json();
-  })
+    return response.json(); // parses JSON response into native Javascript objects
+  });
 }

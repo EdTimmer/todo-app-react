@@ -102,24 +102,23 @@ class TodosPage extends React.Component {
 
   completeAll() {
     api('PUT', null, this.updateTodos);
-    let newTodos = this.state.todos;
-    newTodos.forEach(todo => {
-      todo.status = 'complete';
-    })
-    this.setState({ todos: newTodos });    
+    // let newTodos = this.state.todos;
+    // newTodos.forEach(todo => {
+    //   todo.status = 'complete';
+    // })
+    // this.setState({ todos: newTodos });
   }
 
   archiveAllCompleted() {
     let customUrl = 'http://localhost:3000/todos/archiveall';
-    api('PUT', null, null, customUrl);
-    // customUrl = 'http://localhost:3000/todos/archiveall'
-    let newTodos = this.state.todos;
-    newTodos.forEach(todo => {
-      if (todo.status === 'complete') {
-        todo.archive = true;
-      }
-    })
-    this.setState({ todos: newTodos });
+    api('PUT', null, this.updateTodos, customUrl);
+    // let newTodos = this.state.todos;
+    // newTodos.forEach(todo => {
+    //   if (todo.status === 'complete') {
+    //     todo.archive = true;
+    //   }
+    // })
+    // this.setState({ todos: newTodos });
   }
 
   /**

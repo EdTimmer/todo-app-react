@@ -85,17 +85,20 @@ app.put('/todos/archiveall', (req, res) => {
       todo.archive = true;
     }
   });
-  res.end();
+  // res.end();
+  res.status(200);
+  // res.json({ msg: 'All completed todos archived' });
 });
 
 app.put('/todos', (req, res) => {
 
   todos.forEach(todo => todo.status = 'complete')
   // res.json(JSON.stringify(todos));
-  res.end();
+  // res.end();
+  // res.json({ msg: 'All todos completed' });
   // res.json(todos);
   // res.status(201).json(todos);
-  // res.status(201);
+  res.status(200);
   // res.send('ok');
   // res.json({ msg: 'All todos completed', todos });
 });

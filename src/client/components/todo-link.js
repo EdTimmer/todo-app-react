@@ -29,15 +29,20 @@ const TodoLink = ({ text, onClick, status }) => {
   /**
    * Base CSS class
    */
-  const baseCls = 'todo-link';
+  // const baseCls = 'todo-link';
 
   return (
-    <div className={baseCls} onClick={onClick}>
-        <input
+    <div onClick={onClick}>
+        {/*<input
           type="checkbox"
           checked={status === 'active' ? '' : 'checked'}
           readOnly
-        />
+        />*/}
+        <span style={{color: 'black'}}>
+          {
+            status === 'active' ? <span>&#9744;</span> :  <span>&#x2611;</span>      
+          }
+        </span>
         {/*<label className="checkbox-container">
           <input
             type="checkbox"

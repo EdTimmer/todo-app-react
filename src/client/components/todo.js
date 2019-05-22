@@ -65,13 +65,18 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, onClickRev
       {
         archive ? (
           <span>
-            <span className="archived-status">archived</span>
-            <Button text="Revive" onClick={onClickRevive} />
+            <span className="archived-status">archived</span>            
           </span>
           ) : null
       }
-
-      <span style={{marginLeft: '5rem', color: 'red'}} onClick={onClickDelete}>&#10060;</span>
+      <div>
+        {
+          archive ? (
+            <Button text="Revive" onClick={onClickRevive} />
+            ) : null
+        }        
+        <span style={{marginLeft: '5rem', color: 'red'}} onClick={onClickDelete}>&#10060;</span>
+      </div>      
     </div>
   );
 }

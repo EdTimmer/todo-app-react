@@ -83,6 +83,12 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     api('DELETE', todo, deleteTodo);
   };
 
+  /**
+   * Click handler for clicking on archive button
+   * Archives todo
+   *
+   * @param {object} todo - Todo object
+   */
   const onClickArchive = todo => {
     let currentArchive;
     let currentStatus;
@@ -99,6 +105,12 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     }    
   };
 
+  /**
+   * Click handler for clicking on revive button
+   * Revives todo
+   *
+   * @param {object} todo - Todo object
+   */
   const onClickRevive = todo => {
     const newTodo = Object.assign({}, todo);
     newTodo.archive = true;
@@ -120,15 +132,13 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
         currentArchive = propsTodo.archive;
       }
     });
-
     if (!currentArchive) {
       const newTodo = Object.assign({}, todo);
       newTodo.status = todo.status === 'complete' ? 'active' : 'complete';
-      newTodo.archive = false;
-  
+      newTodo.archive = false;  
       api('PUT', newTodo, putTodo);
     }
-  }
+  };
 
   /**
    * Renders All Todos
@@ -141,7 +151,6 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     }
 
     return todos.map(todo => {
-      
       let filtered;
       switch (filterBy) {
         case 'active':

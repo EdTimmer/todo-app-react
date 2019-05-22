@@ -96,10 +96,16 @@ class TodosPage extends React.Component {
     this.setState({ todos });
   }
 
+  /**
+   * Complete all active todos
+   */
   completeAll() {
     api('PUT', null, this.updateTodos);
   }
 
+  /**
+   * Archive all completed todos
+   */
   archiveAllCompleted() {
     let customUrl = 'http://localhost:3000/todos/archiveall';
     api('PUT', null, this.updateTodos, customUrl);

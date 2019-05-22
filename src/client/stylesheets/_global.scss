@@ -18,6 +18,7 @@ button {
   color: white;
   background-color: map-get($colors, secondary);
   border: 0;
+  border-radius: 0.3rem;
 }
 
 .container {

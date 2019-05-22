@@ -5,22 +5,15 @@
     margin-right: 3rem;
     color: map-get($colors, darkgrey);
   }
-
-  &__item--active {
-    font-weight: 700;
-  }
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: lightgray;
-  height: 3rem;
+  height: 4rem;
   font-size: 1.5rem;
   padding-left: 4rem;
-
   text-align: left;
-  width: 100%;
 }
 
 .navbar-links {

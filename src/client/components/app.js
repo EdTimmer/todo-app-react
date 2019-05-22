@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Route, Switch, HashRouter  } from 'react-router-dom';
 import TodosPage from './todos-page';
 import Header from './header';

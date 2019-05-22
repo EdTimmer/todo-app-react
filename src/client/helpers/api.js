@@ -6,10 +6,8 @@
 * @param  {function} cb - Callback function for returned data
 */
 export function api(method, data, cb, customUrl) {
-  console.log('data in api is: ', typeof data);
   const promise = getApiPromise(method, data, customUrl);
   promise.then(json => {
-    console.log('json in promise is: ', typeof json);
     if (typeof cb === 'function') {
       cb(json);
     }

@@ -28,7 +28,7 @@ const defaultProps = {
   onClickDelete: noop,
   onClickArchive: noop,
   onClickTodo: noop,
-  status: '',
+  status: 'active',
   text: '',
   archive: false,
 };

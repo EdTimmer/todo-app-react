@@ -1,7 +1,28 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
+const noop = () => {};
 /**
- * Header component
+ * Prop Types
+ * @private
+ */
+const propTypes = {
+  num: PropTypes.number,
+  completeAll: PropTypes.func,
+};
+
+/**
+ * Default Props
+ * @private
+ */
+const defaultProps = {
+  num: 0,
+  completeAll: noop,
+};
+
+
+/**
+ * Summary component
  */
 const Summary = ({num, completeAll}) => {
   /**
@@ -15,7 +36,10 @@ const Summary = ({num, completeAll}) => {
       <span>{num} task{num === 1 ? '' : 's'} remaining</span>
       <span style={{marginLeft: '2rem', color: 'blue', fontWeight: '500', fontSize: '1.5rem'}} onClick={completeAll}>Complete All</span>
     </div>
-  )
+  );
 };
+
+Summary.propTypes = propTypes;
+Summary.defaultProps = defaultProps;
 
 export default Summary;
